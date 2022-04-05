@@ -1,1 +1,1 @@
-# autop3
+# auto-program
