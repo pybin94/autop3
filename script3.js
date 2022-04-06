@@ -94,8 +94,8 @@ const logicReset = () => {
 }
 
 const newGame = () => {
-    console.log(profit)
     document.querySelector("#startingAmount").innerHTML = profit
+    startAmountValue = profit
     document.querySelector("#profit").innerHTML = 0
     level = 0
     count = 0
@@ -185,11 +185,12 @@ const setOK = () => {
     //     markList += `<div class="markAmount">${item}</div>`
     // })
     
+    newGame()
     displayScreen()
     // document.querySelector("#markAmountBox").innerHTML = markList  
 
-    newGame()
 }
+
 const setCancle = () => {
     document.querySelector("#cover").classList.remove("active");
 }
