@@ -166,28 +166,28 @@ const setOK = () => {
     reset = document.querySelector("#levelLimit").value
 
     martin = []
-    // markAmount = []
+    markAmount = []
 
     if( martinSet.value == 1 ) {
         martin.push(martin1)
-        // markAmount.push(markAmount1)
+        markAmount.push(markAmount1)
     } else if ( martinSet.value == 2 ) {
         martin.push(martin2)
-        // markAmount.push(markAmount2)
+        markAmount.push(markAmount2)
     } else {
         martin.push(martin3)
-        // markAmount.push(markAmount3)
+        markAmount.push(markAmount3)
     }
 
-    // let markList = ""
+    let markList = ""
 
-    // markAmount[0].map((item, index) => {
-    //     markList += `<div class="markAmount">${item}</div>`
-    // })
+    markAmount[0].map((item, index) => {
+        markList += `<div class="markAmount">${item}</div>`
+    })
     
     newGame()
     displayScreen()
-    // document.querySelector("#markAmountBox").innerHTML = markList  
+    document.querySelector("#markAmountBox").innerHTML = markList  
 
 }
 
