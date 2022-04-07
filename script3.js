@@ -30,10 +30,13 @@ const winProfit = () => {
     } else {
         profit = profit + martin[0][level]*0.95
     }
-    document.querySelector("#nowPrice").innerHTML = profit
-    document.querySelector("#profit").innerHTML = profit - startAmountValue
-}
 
+    let sumProfit = profit - startAmountValue
+
+    document.querySelector("#nowPrice").innerHTML = profit.toLocaleString('ko-KR')
+    document.querySelector("#profit").innerHTML = sumProfit.toLocaleString('ko-KR')
+
+}
 const loseProfit = () => {
 
     if(gamePattern[level] === 0){
@@ -41,10 +44,13 @@ const loseProfit = () => {
     } else {
         profit = profit - martin[0][level]*0.95
     }
-    document.querySelector("#nowPrice").innerHTML = profit
-    document.querySelector("#profit").innerHTML = profit - startAmountValue
-}
 
+    let sumProfit = profit - startAmountValue
+
+    document.querySelector("#nowPrice").innerHTML = profit.toLocaleString('ko-KR')
+    document.querySelector("#profit").innerHTML = sumProfit.toLocaleString('ko-KR')
+
+}
 const levelAlert = () => {
 
     const nowLevel = document.querySelectorAll("#gamePatternBox > div")
@@ -65,7 +71,7 @@ const countRound = () => {
 }
 
 const displayScreen = () => {
-    document.querySelector("#bettingScreen").innerHTML = `${gamePattern[level] === 0 ? "플래이어" : "뱅커"} ${martin[0][level]}`
+    document.querySelector("#bettingScreen").innerHTML = `${gamePattern[level] === 0 ? "플래이어" : "뱅커"} ${martin[0][level].toLocaleString('ko-KR')}`
     document.querySelector("#bettingScreen").style.borderColor = gamePattern[level] === 0 ? "#3498db" : "#e74c3c";
     document.querySelector("#bettingScreen").style.color = gamePattern[level] === 0 ? "#3498db" : "#e74c3c";
 }
@@ -94,7 +100,7 @@ const logicReset = () => {
 }
 
 const newGame = () => {
-    document.querySelector("#startingAmount").innerHTML = profit
+    document.querySelector("#startingAmount").innerHTML = profit.toLocaleString('ko-KR')
     startAmountValue = profit
     document.querySelector("#profit").innerHTML = 0
     level = 0
@@ -162,7 +168,6 @@ const setOK = () => {
 
     startAmountValue = Number(document.querySelector("#priceInput").value)
     profit = Number(document.querySelector("#priceInput").value)
-    document.querySelector("#startingAmount").innerHTML = startAmountValue
     reset = document.querySelector("#levelLimit").value
 
     martin = []
