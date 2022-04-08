@@ -42,7 +42,7 @@ const loseProfit = () => {
     if(gamePattern[level] === 0){
         profit = profit - martin[0][level]
     } else {
-        profit = profit - martin[0][level]*0.95
+        profit = profit - martin[0][level]
     }
 
     let sumProfit = profit - startAmountValue
