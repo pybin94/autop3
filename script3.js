@@ -126,6 +126,7 @@ const loseGame = () => {
 
     loseProfit()
 
+    randomLogic()
     if (level == reset){
         alert("리셋 단계에 도달했습니다 게임을 다시 시작합니다.")
         return logicReset()
