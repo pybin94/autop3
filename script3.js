@@ -147,7 +147,7 @@ const loseGame = () => {
     loseProfit()
     randomLogic()
 
-    let multiWin = false;
+    multiWin = false;
 
     if (level == reset){
         alert("리셋 단계에 도달했습니다 게임을 다시 시작합니다.")
