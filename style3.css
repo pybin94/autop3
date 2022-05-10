@@ -344,13 +344,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .뱅, .플 {
-    width: 18px;
-    height: 18px;
+    width: 40px;
+    height: 40px;
     border-radius: 20px;
     color: #fff;
     text-align: center;
-    line-height: 18px;
-    font-size: 12px;
+    line-height: 40px;
 }
 .뱅 {
     background-color: #ffcac4;
