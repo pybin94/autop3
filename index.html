@@ -34,9 +34,6 @@
         text-align: center;
         margin-bottom: 10px;
     }
-    .result-list{
-
-    }
 </style>
 
 <div class="wrap">
@@ -48,9 +45,6 @@
 
 </div>    
 <script>
-
-    let gameResultList = []
-    let gameScreenList = []
     const gamePattern = {
         "1": ["A", "A", "A", "A", "A"],
         "2": ["A", "A", "A", "A", "B"],
@@ -86,37 +80,33 @@
         "32": ["A", "B", "A", "B", "B"],
     }
 
+    let gameResultList = []
+    let gameScreenList = []
+
     const arrayAdjust = () => {
 
         let i = 1
         while(i <= 32){
-            if(gameResultList.toString() == gamePattern[i].toString()) {
-                if(i <= 17) {
-                    document.querySelector("#nextResult").innerHTML = "플래이어"
-                } else {
-                    document.querySelector("#nextResult").innerHTML = "뱅커"
-                }
+            if(gameResultList.slice(-5).toString() == gamePattern[i].toString()) {
+                i <= 16
+                ? document.querySelector("#nextResult").innerHTML = "플래이어"
+                : document.querySelector("#nextResult").innerHTML = "뱅커"
                 break;
             }
             i++;
         }
-
-        document.querySelector("#resultList").innerHTML = gameScreenList
-        if(gameResultList.length > 4) {
-            gameResultList.shift()
-            gameScreenList.shift()
-        }
+        document.querySelector("#resultList").innerHTML = gameScreenList.slice(-5)
     }
 
     const player = () => {
-        gameResultList.push("A")
-        gameScreenList.push("플")
+        gameResultList = [ ...gameResultList, "A"]
+        gameScreenList = [ ...gameScreenList, "플"]
         arrayAdjust()
     }
 
     const banker = () => {
-        gameResultList.push("B")
-        gameScreenList.push("뱅")
+        gameResultList = [ ...gameResultList, "B"]
+        gameScreenList = [ ...gameScreenList, "뱅"]
         arrayAdjust()
     }
 
