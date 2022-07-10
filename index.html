@@ -1,0 +1,123 @@
+<style>
+    .wrap {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 20px;
+    }
+    button {
+        border-radius: 4px;
+        padding: 20px 30px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .player {
+        border: 1px solid #3498db;
+        background-color: #3498db;
+    }
+    .player:hover {
+        background-color: #fff;
+    }
+    .banker {
+        border: 1px solid #e74c3c;
+        background-color: #e74c3c;
+    }
+    .banker:hover {
+        background-color: #fff;
+    }
+    .next-result{
+        border: 1px solid #e2e2e2;
+        line-height: 40px;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .result-list{
+
+    }
+</style>
+
+<div class="wrap">
+    <button onclick="player()" class="player">player</button>
+    <button onclick="banker()" class="banker">banker</button>
+    
+    <div id="nextResult" class="next-result">결과</div>
+    <div id="resultList" class="result-list"></div>
+
+</div>    
+<script>
+
+    let gameResultList = []
+    let gameScreenList = []
+    const gamePattern = {
+        "1": ["A", "A", "A", "A", "A"],
+        "2": ["A", "A", "A", "A", "B"],
+        "3": ["A", "B", "A", "A", "A"],
+        "4": ["A", "A", "B", "A", "A"],
+        "5": ["A", "A", "B", "A", "B"],
+        "6": ["A", "B", "A", "A", "B"],
+        "7": ["A", "B", "B", "A", "B"],
+        "8": ["A", "A", "B", "B", "A"],
+        "9": ["B", "A", "A", "A", "A"],
+        "10": ["B", "B", "A", "A", "A"],
+        "11": ["B", "B", "B", "A", "A"],
+        "12": ["B", "B", "B", "A", "B"],
+        "13": ["B", "A", "B", "A", "B"],
+        "14": ["B", "A", "A", "A", "B"],
+        "15": ["B", "A", "A", "B", "B"],
+        "16": ["B", "A", "B", "A", "A"],
+        "17": ["B", "B", "B", "B", "B"],
+        "18": ["B", "B", "B", "B", "A"],
+        "19": ["B", "A", "B", "B", "B"],
+        "20": ["B", "B", "A", "B", "B"],
+        "21": ["B", "B", "A", "B", "A"],
+        "22": ["B", "A", "B", "B", "A"],
+        "23": ["B", "A", "A", "B", "A"],
+        "24": ["B", "B", "A", "A", "B"],
+        "25": ["A", "B", "B", "B", "B"],
+        "26": ["A", "A", "B", "B", "B"],
+        "27": ["A", "A", "A", "B", "B"],
+        "28": ["A", "A", "A", "B", "A"],
+        "29": ["A", "B", "A", "B", "A"],
+        "30": ["A", "B", "B", "B", "A"],
+        "31": ["A", "B", "B", "A", "A"],
+        "32": ["A", "B", "A", "B", "B"],
+    }
+
+    const arrayAdjust = () => {
+
+        let i = 1
+        while(i <= 32){
+            if(gameResultList.toString() == gamePattern[i].toString()) {
+                if(i <= 17) {
+                    document.querySelector("#nextResult").innerHTML = "플래이어"
+                } else {
+                    document.querySelector("#nextResult").innerHTML = "뱅커"
+                }
+                break;
+            }
+            i++;
+        }
+
+        document.querySelector("#resultList").innerHTML = gameScreenList
+        if(gameResultList.length > 4) {
+            gameResultList.shift()
+            gameScreenList.shift()
+        }
+    }
+
+    const player = () => {
+        gameResultList.push("A")
+        gameScreenList.push("플")
+        arrayAdjust()
+    }
+
+    const banker = () => {
+        gameResultList.push("B")
+        gameScreenList.push("뱅")
+        arrayAdjust()
+    }
+
+</script>
