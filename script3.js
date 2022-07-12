@@ -190,8 +190,6 @@ const banker = () => {
     }
     displayScreen()
     countRound()
-
-
 }
 
 const tie = () => {
@@ -230,8 +228,12 @@ const setOK = () => {
         martin.push(martin1)
     } else if ( martinSet.value == 2 ) {
         martin.push(martin2)
-    } else {
+    } else if (martinSet.value == 3){
         martin.push(martin3)
+    } else if  (martinSet.value == 4){
+        martin.push(martin4)
+    } else {
+        martin.push(martin5)
     }
 
     newGame()
