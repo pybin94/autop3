@@ -2,7 +2,7 @@ const pattern = {
     "1": ["A", "A", "A", "A", "A"],
     "2": ["A", "A", "A", "A", "B"],
     "3": ["A", "B", "A", "A", "A"],
-    "4": ["B", "B", "A", "B", "B"],
+    "4": ["A", "A", "B", "A", "A"],
     "5": ["A", "A", "B", "A", "B"],
     "6": ["A", "B", "A", "A", "B"],
     "7": ["A", "B", "B", "A", "B"],
@@ -18,7 +18,7 @@ const pattern = {
     "17": ["B", "B", "B", "B", "B"],
     "18": ["B", "B", "B", "B", "A"],
     "19": ["B", "A", "B", "B", "B"],
-    "20": ["A", "A", "B", "A", "A"],
+    "20": ["B", "B", "A", "B", "B"],
     "21": ["B", "B", "A", "B", "A"],
     "22": ["B", "A", "B", "B", "A"],
     "23": ["B", "A", "A", "B", "A"],
@@ -49,14 +49,17 @@ let count = 0;
 let profit = 0;
 let startAmountValue = 0;
 let reset = 8
+let rest = false;
+let releaseRest = false
 
 const init = () => {
     newGame()
 }
 
 const bugTest = () => {
-    console.log(martin[0][level])
-    console.log(gameBetting.slice(-1)[0])
+    // console.log(martin[0][level])
+    
+    console.log(gameResultList)
 }
 
 const arrayAdjust = () => {
@@ -75,9 +78,9 @@ const arrayAdjust = () => {
         i++;
     }
 
+    console.log(gameBetting.slice(-1)[0])
     bottomList = [...bottomList, `<div class="${gameResultList.slice(-1)[0]}click bottom-ball"></div>`]
-    console.log(bottomList)
-    document.querySelector("#gamePatternBox").innerHTML = bottomList.slice(-5)
+
 }
 
 
@@ -150,45 +153,64 @@ const newGame = () => {
     document.querySelector("#allCount").classList.remove("active");
 }
 
+const restRound = () => {
+
+    document.querySelector("#bettingScreen").innerHTML = `휴식`
+    document.querySelector("#bettingScreen").style.borderColor = "#c7c7c7";
+    document.querySelector("#bettingScreen").style.color = "#333";
+    loseProfit()
+    rest = true;
+}
+
 const player = () => {
-
+    if (rest === true){
+        rest = false;
+        arrayAdjust()
+        displayScreen()
+        return false;
+    }
     gameResultList = [ ...gameResultList, "A"]
-
     bugTest()
 
     if(gameResultList.length > 5) {
         if(gameBetting.slice(-1)[0] === "A"){
             winProfit()
             arrayAdjust()
+            displayScreen()
         } else if (gameBetting.slice(-1)[0] === "B"){
-            loseProfit()
-            arrayAdjust()
+            restRound()
         }
     } else {
         arrayAdjust()
+        displayScreen()
     }
 
-    displayScreen()
     countRound()
 }
 
 const banker = () => {
-
+    if (rest === true){
+        rest = false;
+        arrayAdjust()
+        displayScreen()
+        return false;
+    }
     gameResultList = [ ...gameResultList, "B"]
-    bugTest()
 
+
+    bugTest()
     if(gameResultList.length > 5) {
         if(gameBetting.slice(-1)[0] === "B"){
             winProfit()
             arrayAdjust()
+            displayScreen()
         } else if (gameBetting.slice(-1)[0] === "A"){
-            loseProfit()
-            arrayAdjust()
+            restRound()
         }
     } else {
         arrayAdjust()
+        displayScreen()
     }
-    displayScreen()
     countRound()
 }
 
