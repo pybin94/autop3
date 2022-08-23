@@ -80,9 +80,7 @@ const arrayAdjust = () => {
 
     console.log(gameBetting.slice(-1)[0])
     bottomList = [...bottomList, `<div class="${gameResultList.slice(-1)[0]}click bottom-ball"></div>`]
-
 }
-
 
 const winProfit = () => {
     if(gameResultList.slice(-1)[0] === "A"){
@@ -133,7 +131,6 @@ const displayScreen = () => {
         }
         i++;
     }
-   
 }
 
 const newGame = () => {
@@ -163,10 +160,13 @@ const restRound = () => {
 }
 
 const player = () => {
+    countRound()
     if (rest === true){
         rest = false;
+        gameResultList = [ ...gameResultList, "A"]
         arrayAdjust()
-        displayScreen()
+        displayScreen()   
+        bugTest()
         return false;
     }
     gameResultList = [ ...gameResultList, "A"]
@@ -185,19 +185,19 @@ const player = () => {
         displayScreen()
     }
 
-    countRound()
 }
 
 const banker = () => {
+    countRound()
     if (rest === true){
         rest = false;
+        gameResultList = [ ...gameResultList, "B"]
         arrayAdjust()
         displayScreen()
+        bugTest()
         return false;
     }
     gameResultList = [ ...gameResultList, "B"]
-
-
     bugTest()
     if(gameResultList.length > 5) {
         if(gameBetting.slice(-1)[0] === "B"){
@@ -211,7 +211,6 @@ const banker = () => {
         arrayAdjust()
         displayScreen()
     }
-    countRound()
 }
 
 const tie = () => {
